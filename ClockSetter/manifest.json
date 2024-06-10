@@ -1,0 +1,10 @@
+{
+  "Name": "ClockSetter",
+  "Author": "calebstein1",
+  "Version": "0.1.0",
+  "Description": "Allows changing the in-game time of day from the settings menu",
+  "UniqueID": "calebstein1.ClockSetter",
+  "EntryDll": "ClockSetter.dll",
+  "MinimumApiVersion": "3.0.0",
+  "UpdateKeys": [ "GitHub:calebstein1/ClockSetter" ]
+}
