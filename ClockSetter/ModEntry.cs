@@ -8,7 +8,8 @@ internal sealed class ModEntry : Mod
 {
     public override void Entry(IModHelper helper)
     {
-        var timeOfDay = Game1.timeOfDay;
+        var hour = Game1.timeOfDay / 100;
+        var minute = Game1.timeOfDay % 100;
 
         helper.Events.GameLoop.GameLaunched += (sender, e) =>
         {
@@ -17,17 +18,30 @@ internal sealed class ModEntry : Mod
 
             configMenu.Register(
                 mod: ModManifest,
-                reset: () => timeOfDay = Game1.timeOfDay,
-                save: () => Game1.timeOfDay = timeOfDay
+                reset: () =>
+                {
+                    hour = Game1.timeOfDay / 100;
+                    minute = Game1.timeOfDay % 100;
+                },
+                save: () => Game1.timeOfDay = (hour * 100) + minute
             );
 
             configMenu.AddNumberOption(
                 mod: ModManifest,
                 name: () => "Hour",
-                getValue: () => Game1.timeOfDay,
-                setValue: value => timeOfDay = value,
-                min: 600,
-                max: 2600,
+                getValue: () => Game1.timeOfDay / 100,
+                setValue: value => hour = value,
+                min: 6,
+                max: 25
+            );
+            
+            configMenu.AddNumberOption(
+                mod: ModManifest,
+                name: () => "Minute",
+                getValue: () => Game1.timeOfDay % 100,
+                setValue: value => minute = value,
+                min: 0,
+                max: 50,
                 interval: 10
             );
         };
