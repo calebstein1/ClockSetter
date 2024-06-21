@@ -30,7 +30,7 @@ internal sealed class ModEntry : Mod
                 name: () => "Hour",
                 getValue: () => Game1.timeOfDay / 100,
                 setValue: value => hour = value,
-                min: 6,
+                min: 5,
                 max: 25
             );
             
